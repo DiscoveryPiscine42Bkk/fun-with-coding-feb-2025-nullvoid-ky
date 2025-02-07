@@ -1,0 +1,33 @@
+.root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 2px 8px 1px black;
+    border-radius: 4px;
+}
+
+h5{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.card-footer{
+    cursor: pointer;
+    background: #000;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    color: white;
+}
+
+.social-list{
+    display: flex;
+    margin: 16px;
+}
