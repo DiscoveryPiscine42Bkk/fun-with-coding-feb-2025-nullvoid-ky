@@ -6,20 +6,16 @@ function getCookie(name) {
 
 function setCookie(name, value, days) {
     let date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Days until expiration
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/"; // path=/ makes it available across the site
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
 function handleNum() {
     const shownum = document.getElementById('shownum');
     let currentValue = parseInt(shownum.innerHTML) || 0;
-
-    currentValue++; // Increment the value
-
+    currentValue++; 
     shownum.innerHTML = currentValue;
-
-    // Save to cookie (using a very long time for "never expire" effect)
     setCookie("likeCount", currentValue, 3650); // 10 years (effectively permanent)
 }
 
