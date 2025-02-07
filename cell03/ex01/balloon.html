@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balloon</title>
+    <style>
+      .balloon {
+        background-color: red;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+    </style>
+    <script>
+      const colors = ["red", "green", "blue"];
+      let index = 0;
+
+      function handleBlow() {
+        const balloon = document.querySelector(".balloon");
+        index = (index + 1) % colors.length;
+        balloon.style.backgroundColor = colors[index];
+
+        let newSize = balloon.offsetWidth + 10;
+        if (newSize > 420) {
+          newSize = 200;
+          index = 0;
+          balloon.style.backgroundColor = colors[index];
+        }
+
+        balloon.style.width = newSize + "px";
+        balloon.style.height = newSize + "px";
+      }
+
+      function handleFlow() {
+        const balloon = document.querySelector(".balloon");
+        index = (index - 1 + colors.length) % colors.length;
+        balloon.style.backgroundColor = colors[index];
+
+        let newSize = balloon.offsetWidth - 5;
+        if (newSize < 200) {
+          newSize = 200;
+        }
+
+        balloon.style.width = newSize + "px";
+        balloon.style.height = newSize + "px";
+      }
+    </script>
+  </head>
+  <body>
+    <div
+      onclick="handleBlow()"
+      onpointerout="handleFlow()"
+      class="balloon"
+    ></div>
+  </body>
+</html>
