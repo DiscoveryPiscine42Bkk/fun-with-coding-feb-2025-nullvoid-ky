@@ -1,0 +1,61 @@
+.container {
+    position: relative;
+    width: 150px;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+.display {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: white;
+    text-align: center;
+    position: relative;
+}
+
+.items {
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    display: none;
+    background-color: white;
+}
+
+.container:hover .items {
+    display: block;
+}
+
+.item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f0f0f0;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.display::after {
+    content: "Selected item";
+    display: block;
+    text-align: center;
+}
+
+#item1:checked~.display::after {
+    content: "Item1";
+}
+
+#item2:checked~.display::after {
+    content: "Item2";
+}
+
+#item3:checked~.display::after {
+    content: "Item3";
+}
