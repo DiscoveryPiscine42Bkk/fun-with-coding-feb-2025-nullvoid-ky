@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List with Cookies</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      #todoList {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        cursor: pointer;
+        background: #f4f4f4;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Todo List</h2>
+    <input type="text" id="todoInput" placeholder="Enter a task" />
+    <button onclick="addTodo()">Add</button>
+    <ul id="todoList"></ul>
+
+    <script>
+      function getCookies(name) {
+        let cookies = document.cookie.split("; ");
+        for (let cookie of cookies) {
+          let [key, value] = cookie.split("=");
+          if (key === name) return JSON.parse(decodeURIComponent(value));
+        }
+        return [];
+      }
+
+      function setCookies(name, value) {
+        document.cookie =
+          name + "=" + encodeURIComponent(JSON.stringify(value)) + "; path=/";
+      }
+
+      function loadTodos() {
+        const todos = getCookies("todos");
+        const todoList = document.getElementById("todoList");
+        todoList.innerHTML = "";
+        todos.forEach((todo, index) => {
+          let li = document.createElement("li");
+          li.textContent = todo;
+          li.onclick = function () {
+            removeTodo(index);
+          };
+          todoList.appendChild(li);
+        });
+      }
+
+      function addTodo() {
+        const input = document.getElementById("todoInput");
+        if (!input.value.trim()) return;
+        let todos = getCookies("todos");
+        todos.push(input.value);
+        setCookies("todos", todos);
+        input.value = "";
+        loadTodos();
+      }
+
+      function removeTodo(index) {
+        let todos = getCookies("todos");
+        todos.splice(index, 1);
+        setCookies("todos", todos);
+        loadTodos();
+      }
+
+      window.onload = loadTodos;
+    </script>
+  </body>
+</html>
