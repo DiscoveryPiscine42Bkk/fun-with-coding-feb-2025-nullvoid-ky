@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List with Cookies</title>
+    <style>
+      /* style.css */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      #todoList {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        cursor: pointer;
+        background: #f4f4f4;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+
+  <body>
+    <h2>Todo List</h2>
+    <button id="addTaskButton">Add Task</button>
+    <ul id="todoList"></ul>
+
+    <script src="todo.js"></script>
+  </body>
+</html>

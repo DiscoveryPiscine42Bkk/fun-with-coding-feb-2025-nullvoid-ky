@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balloon</title>
+    <style>
+      .balloon {
+        background-color: red;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div class="balloon"></div>
+
+    <script>
+      $(document).ready(function () {
+        const colors = ["red", "green", "blue"];
+        let index = 0;
+        const balloon = $(".balloon");
+        balloon.click(function () {
+          index = (index + 1) % colors.length;
+          balloon.css("background-color", colors[index]);
+
+          let newSize = balloon.width() + 10;
+          if (newSize > 420) {
+            newSize = 200;
+            index = 0;
+            balloon.css("background-color", colors[index]);
+          }
+
+          balloon.css("width", newSize + "px");
+          balloon.css("height", newSize + "px");
+        });
+
+        balloon.mouseout(function () {
+          index = (index - 1 + colors.length) % colors.length;
+          balloon.css("background-color", colors[index]);
+
+          let newSize = balloon.width() - 5;
+          if (newSize < 200) {
+            newSize = 200;
+          }
+
+          balloon.css("width", newSize + "px");
+          balloon.css("height", newSize + "px");
+        });
+      });
+    </script>
+  </body>
+</html>
